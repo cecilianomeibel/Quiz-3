@@ -1,5 +1,5 @@
 
-public class Node{
+public class Node {
     public Object data;
     public Node next;
     public Node previous;
@@ -7,8 +7,7 @@ public class Node{
     //Constructor
     public Node (Object data){
         this.data= data;
-        this.next = null;
-        this.previous= null;
+        this.next = this.previous = null;
     }
 
 
