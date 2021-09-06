@@ -1,12 +1,12 @@
 
 public class DoublyLinkedList{
     private Node head;
-    private Node tail;   //Se crea el nodo de cola 
+    private Node last;   //Se crea el nodo de cola 
     private int size;
 
     public DoublyLinkedList(){ //Constructor que inicializa a head y tail
         this.head = null;
-        this.tail = null;
+        this.last = null;
         this.size = 0;
     }
 
@@ -14,7 +14,6 @@ public class DoublyLinkedList{
     public boolean isEmpty(){
         return this.head == null;
     }
-     
      
     //Metodo para saber el tamaño de la lista
     public int size(){
@@ -24,21 +23,29 @@ public class DoublyLinkedList{
     //Metodo para agregar nodos al inicio
     public void insertFirst(Object data){
         Node newNode = new Node(data);
-        newNode.next = this.head;
-        this.head = newNode;
-        this.size++; //tamaño incrementa
+        if (this.isEmpty()) {
+            this.head = this.last = newNode;
+        } else {
+            newNode.setNext(this.head);
+            this.head = newNode;
+        }
+        this.size++;
     }
 
     //Metodo para agregar nodos al final
-    public void insertSecond(Object data){
+    public void insertLast(Object data){
         Node newNode = new Node(data);
-        newNode.previous = this.tail;
-        this.tail= newNode;
-        this.size++; //tamaño incrementa
+        if (this.isEmpty()) {
+            this.head = this.last = newNode;
+        } else {
+            this.last.setNext(newNode);
+            this.last = newNode;
+        }
+        this.size++;
     }
 
     //Metodo para eliminar nodos al inicio
-    public Node deleteFirst(int i){
+    public Node deleteFirst(){
         if (this.head != null){
             Node temp = this.head;
             this.head = this.head.next;
@@ -51,10 +58,10 @@ public class DoublyLinkedList{
     
 
     //Metodo para eliminar nodos al final
-    public Node deleteSecond(){
-        if (this.tail != null){
-            Node temp = this.tail;
-            this.tail = this.tail.previous;
+    public Node deleteLast(){
+        if (this.last != null){
+            Node temp = this.last;
+            this.last = this.last.previous;
             this.size--; //tamaño se reduce
             return temp;     
         } else {
@@ -77,23 +84,19 @@ public class DoublyLinkedList{
         doublyLinkedList.insertFirst(0);
         doublyLinkedList.insertFirst(89);
         doublyLinkedList.insertFirst(77);
-
+        
+       
         //Desencolar 3 elemetos
-        doublyLinkedList.deleteFirst(5);
-        doublyLinkedList.insertFirst(8);
-        doublyLinkedList.insertFirst(3);
+        doublyLinkedList.deleteFirst();
+        doublyLinkedList.deleteFirst();
+        doublyLinkedList.deleteFirst();
+       
 
         //Obtener e imprimir el tamaño de la lista
         int size = doublyLinkedList.size();
         System.out.println(size);
 
-
-
     }
-
-    
-       
-    
 
 
 }
