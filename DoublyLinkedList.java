@@ -26,7 +26,8 @@ public class DoublyLinkedList{
         if (this.isEmpty()) {
             this.head = this.last = newNode;
         } else {
-            newNode.setNext(this.head);
+            newNode.next=this.head;
+            this.head.previous=newNode; ///
             this.head = newNode;
         }
         this.size++;
@@ -38,39 +39,66 @@ public class DoublyLinkedList{
         if (this.isEmpty()) {
             this.head = this.last = newNode;
         } else {
-            this.last.setNext(newNode);
+            this.last.next=newNode;
+            newNode.previous=this.last; ////
             this.last = newNode;
         }
         this.size++;
     }
 
+
     //Metodo para eliminar nodos al inicio
-    public Node deleteFirst(){
-        if (this.head != null){
-            Node temp = this.head;
-            this.head = this.head.next;
-            this.size--; //tamaño se reduce
-            return temp;     
-        } else {
-            return null;
-        }
+    public void deleteFirst(){
+        this.head= this.head.next;
+        this.head.previous= null;
+        this.size--; //Reduce el tamaño de la lista
     }
     
 
     //Metodo para eliminar nodos al final
-    public Node deleteLast(){
-        if (this.last != null){
-            Node temp = this.last;
-            this.last = this.last.previous;
-            this.size--; //tamaño se reduce
-            return temp;     
+    public void deleteLast(){
+        if (this.last.previous==null){
+            this.head =null;
+            this.last=null;
         } else {
-            return null;
-        }
+            this.last = this.last.previous;
+            this.last.next=null;
+        }this.size--;  //Reduce el tamaño de la lista
     }
+
     
 
-    //Metodo para mostrar la lista de inicio a fin
+    //Metodo para recorrer la lista
+
+    public String Lista(){
+        String Dato ="";
+        Node axu = this.head;
+        while(axu!=null){
+            Dato+="{" + axu.data+"}";
+            axu=axu.next;
+        }
+        return (Dato);
+    }
+
+
+   //Metodo para borrar una posicion 
+   public void delete_pos(int pos){
+       Node previous = this.head;
+       Node current = this.head;
+       int k=0;
+       if (pos > 0){
+           while (k!= pos && current.next != null){
+               previous=current;
+               current=current.next;
+               k++;
+               System.out.println("  k  "+k);
+           }
+           previous.next=current.next;
+
+       }
+   }
+
+
     
     public static void main(String [] args){
         //Crear una lista doblemente enlazada que este vacía
@@ -84,20 +112,28 @@ public class DoublyLinkedList{
         doublyLinkedList.insertLast(0);
         doublyLinkedList.insertLast(89);
         doublyLinkedList.insertLast(77);
-        
-       
+
+        System.out.println(doublyLinkedList.Lista()); // Muestra los elementos de la lista 
+        System.out.println("Se desencolan 3 elementos"); // Muestra los elementos de la lista 
+
+
         //Desencolar 3 elemetos
         doublyLinkedList.deleteFirst();
         doublyLinkedList.deleteFirst();
         doublyLinkedList.deleteFirst();
-       
+        
+        System.out.println(doublyLinkedList.Lista()); // Muestra los elementos de la lista 
 
         //Obtener e imprimir el tamaño de la lista
         int size = doublyLinkedList.size();
-        System.out.println(size);
+        System.out.println("El tamaño de la lista es: " + size);
 
     }
 
 
 }
+
+
+
+
 
