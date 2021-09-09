@@ -1,13 +1,19 @@
 
 public class Node {
+    
     public Object data;
     public Node next;
     public Node previous;
 
     //Constructor
     public Node (Object data){
-        this.data= data;
-        this.next = this.previous = null;
+        this.data = data;
+        this.next = null;
+        this.previous = null;
+    }
+
+    public void verNodo(){
+        System.out.println(" { "+data+ "}");
     }
 
 
@@ -23,15 +29,15 @@ public class Node {
         return this.next;
     }
 
-    public void setNext(Node node) {
-        this.next = node;
+    public void setNext(Node next) {
+        this.next = next;
     }
 
     public Node getPrevious() {
         return this.previous;
     }
 
-    public void setPrevious(Node node) {
-        this.previous = node;
+    public void setPrevious(Node previous) {
+        this.previous = previous;
     }
 }
