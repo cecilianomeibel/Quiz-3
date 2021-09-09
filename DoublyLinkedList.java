@@ -77,13 +77,13 @@ public class DoublyLinkedList{
         DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
 
         //Insertar elementos en la lista 
-        doublyLinkedList.insertFirst(5);
-        doublyLinkedList.insertFirst(8);
-        doublyLinkedList.insertFirst(3);
-        doublyLinkedList.insertFirst(12);
-        doublyLinkedList.insertFirst(0);
-        doublyLinkedList.insertFirst(89);
-        doublyLinkedList.insertFirst(77);
+        doublyLinkedList.insertLast(5);
+        doublyLinkedList.insertLast(8);
+        doublyLinkedList.insertLast(3);
+        doublyLinkedList.insertLast(12);
+        doublyLinkedList.insertLast(0);
+        doublyLinkedList.insertLast(89);
+        doublyLinkedList.insertLast(77);
         
        
         //Desencolar 3 elemetos
